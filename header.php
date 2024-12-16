@@ -41,12 +41,22 @@
         <h1 class="header__logo">
           <a href=""><img src="<?php echo get_template_directory_uri() ?>/img/logo.png" alt="OHA!" /></a>
         </h1>
-        <nav class="header__nav">
+        <?php
+          wp_nav_menu(
+            array(
+              'depth' => 1,
+              'theme_location' => 'global', // グローバルメニューをここに表示すると指定
+              'container' => '',
+              'menu_class' => 'header__nav'
+            )
+          );
+        ?>
+        <!-- <nav class="header__nav">
           <a href="#about" class="header__link">サービスについて</a>
           <a href="#how-to-use" class="header__link">使い方</a>
           <a href="#merit" class="header__link">メリット</a>
           <a href="#contact" class="header__button button">お問い合わせ</a>
-        </nav>
+        </nav> -->
         <button id="js-drawer-icon" class="header__open drawer-icon">
           <span class="drawer-icon__bar"></span>
           <span class="drawer-icon__bar"></span>
