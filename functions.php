@@ -26,4 +26,20 @@ function my_menu_init() {
       );
 }
 add_action('init', 'my_menu_init');
+
+// メニューリンクにクラスを追加
+// function add_menu_link_class($atts, $item, $args) {
+//   // 特定のテーマ位置（例: 'global' メニュー）のみに適用
+//   if (isset($args->theme_location) && $args->theme_location === 'global') {
+//       // 「お問い合わせ」の場合
+//       if ($item->title === 'お問い合わせ') {
+//           $atts['class'] = 'header__button button';
+//       } else {
+//           // 他のメニューアイテムには header__link を付与
+//           $atts['class'] = 'header__link';
+//       }
+//   }
+//   return $atts;
+// }
+// add_filter('nav_menu_link_attributes', 'add_menu_link_class', 10, 3);
 ?>

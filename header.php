@@ -41,22 +41,23 @@
         <h1 class="header__logo">
           <a href=""><img src="<?php echo get_template_directory_uri() ?>/img/logo.png" alt="OHA!" /></a>
         </h1>
+        <nav class="header__nav">
         <?php
           wp_nav_menu(
             array(
               'depth' => 1,
               'theme_location' => 'global', // グローバルメニューをここに表示すると指定
               'container' => '',
-              'menu_class' => 'header__nav'
+              'menu_class' => 'header__nav',
+              'link_class' => 'header__link',
             )
           );
         ?>
-        <!-- <nav class="header__nav">
-          <a href="#about" class="header__link">サービスについて</a>
+          <!-- <a href="#about" class="header__link">サービスについて</a>
           <a href="#how-to-use" class="header__link">使い方</a>
           <a href="#merit" class="header__link">メリット</a>
-          <a href="#contact" class="header__button button">お問い合わせ</a>
-        </nav> -->
+          <a href="#contact" class="header__button button">お問い合わせ</a> -->
+        </nav>
         <button id="js-drawer-icon" class="header__open drawer-icon">
           <span class="drawer-icon__bar"></span>
           <span class="drawer-icon__bar"></span>
@@ -66,10 +67,20 @@
     </header>
 
     <div id="js-drawer-content" class="drawer-content">
-      <nav class="drawer-content__menu">
+      <?php
+        wp_nav_menu(
+          array(
+            'depth' => 1,
+            'theme_location' => 'drawer', // メニュー位置（管理画面で設定したメニュー位置名）
+            'container' => '', // メニューを囲むタグを省略
+            'menu_class' => 'drawer-content__menu', // メニューリストのクラス
+          )
+        );
+      ?>
+      <!-- <nav class="drawer-content__menu">
         <a href="#about" class="drawer-content__link">サービスについて</a>
         <a href="#how-to-use" class="drawer-content__link">使い方</a>
-        <a href="#merit" class="drawer-content__link">メリット</a>
+        <a href="#merit" class="drawer-content__link">メリット</a> -->
         <div class="drawer-content__button">
           <a href="#contact" class="button">お問い合わせ</a>
         </div>
