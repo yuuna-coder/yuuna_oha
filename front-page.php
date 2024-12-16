@@ -1,75 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head prefix="og: https://ogp.me/ns#">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>OHA!</title>
-    <meta
-      name="description"
-      content="OHA!は、朝起きたい人と朝起こされたい人がランダムにマッチングしちゃう通話アプリです。"
-    />
-    <link rel="icon" href="./favicon.ico" />
-    <meta property="og:title" content="OHA!" />
-    <meta
-      property="og:description"
-      content="OHA!は、朝起きたい人と朝起こされたい人がランダムにマッチングしちゃう通話アプリです。"
-    />
-    <meta property="og:type" content="website" />
-    <!-- 案件では実際のURLを入れる -->
-    <meta property="og:url" content="https://example.com/" />
-    <!-- 案件では実際のURLを入れる -->
-    <meta property="og:image" content="https://example.com/img/ogp.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-    /> -->
-    <link rel="stylesheet" href="./css/lib/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="header__inner">
-        <h1 class="header__logo">
-          <a href=""><img src="./img/logo.png" alt="OHA!" /></a>
-        </h1>
-        <nav class="header__nav">
-          <a href="#about" class="header__link">サービスについて</a>
-          <a href="#how-to-use" class="header__link">使い方</a>
-          <a href="#merit" class="header__link">メリット</a>
-          <a href="#contact" class="header__button button">お問い合わせ</a>
-        </nav>
-        <button id="js-drawer-icon" class="header__open drawer-icon">
-          <span class="drawer-icon__bar"></span>
-          <span class="drawer-icon__bar"></span>
-          <span class="drawer-icon__bar"></span>
-        </button>
-      </div>
-    </header>
-
-    <div id="js-drawer-content" class="drawer-content">
-      <nav class="drawer-content__menu">
-        <a href="#about" class="drawer-content__link">サービスについて</a>
-        <a href="#how-to-use" class="drawer-content__link">使い方</a>
-        <a href="#merit" class="drawer-content__link">メリット</a>
-        <div class="drawer-content__button">
-          <a href="#contact" class="button">お問い合わせ</a>
-        </div>
-      </nav>
-    </div>
+<?php get_header(); ?>
 
     <div class="mv">
       <div class="mv__inner">
@@ -88,7 +17,7 @@
           </div>
         </div>
         <div class="mv__image">
-          <img src="./img/first-view-img.png" alt="" />
+          <img src="<?php echo get_template_directory_uri() ?>/img/first-view-img.png" alt="" />
         </div>
       </div>
     </div>
@@ -97,14 +26,14 @@
       <div class="case__inner">
         <h2 class="case__title js-in-view fade-in-up">導入実績</h2>
         <div class="case__items">
-          <div class="case__item"><img src="./img/case1-img.png" alt="" /></div>
-          <div class="case__item"><img src="./img/case2-img.png" alt="" /></div>
-          <div class="case__item"><img src="./img/case3-img.png" alt="" /></div>
-          <div class="case__item"><img src="./img/case4-img.png" alt="" /></div>
-          <div class="case__item"><img src="./img/case5-img.png" alt="" /></div>
-          <div class="case__item"><img src="./img/case6-img.png" alt="" /></div>
-          <div class="case__item"><img src="./img/case7-img.png" alt="" /></div>
-          <div class="case__item"><img src="./img/case8-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case1-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case2-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case3-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case4-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case5-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case6-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case7-img.png" alt="" /></div>
+          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case8-img.png" alt="" /></div>
         </div>
       </div>
     </section>
@@ -154,11 +83,11 @@
     <div id="about" class="about">
       <div class="about__inner">
         <div class="about__title js-in-view fade-in-up">
-          <img src="./img/about-logo.png" alt="OHA!" />
+          <img src="<?php echo get_template_directory_uri() ?>/img/about-logo.png" alt="OHA!" />
         </div>
         <div class="about__content">
           <div class="about__image">
-            <img src="./img/about-img.png" alt="" />
+            <img src="<?php echo get_template_directory_uri() ?>/img/about-img.png" alt="" />
           </div>
           <p class="about__text">
             突然ですが、あなたは朝起きる時、<br
@@ -196,7 +125,7 @@
     <dialog id="js-about-modal" class="about-modal">
       <div class="about-modal__head">
         <button class="about-modal__close-icon js-modal-close">
-          <img src="./img/close-icon.png" alt="モーダルを閉じる" />
+          <img src="<?php echo get_template_directory_uri() ?>/img/close-icon.png" alt="モーダルを閉じる" />
         </button>
       </div>
       <div class="about-modal__body">
@@ -246,7 +175,7 @@
           <div class="how-to-use__box">
             <div class="how-to-use__box-title">
               誰かを起こす予定があれば<br class="hidden-pc" />起きれる派の人
-              <img src="./img/step1-title-img.png" alt="" />
+              <img src="<?php echo get_template_directory_uri() ?>/img/step1-title-img.png" alt="" />
             </div>
             <div class="how-to-use__steps">
               <div class="how-to-use__step js-in-view anim-fade-in-up">
@@ -257,7 +186,7 @@
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="./img/step1-1-img.png" alt="" />
+                      <img src="<?php echo get_template_directory_uri() ?>/img/step1-1-img.png" alt="" />
                     </div>
                     <p class="step-box__text">
                       起こしたい時間を<br />設定します
@@ -273,7 +202,7 @@
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="./img/step1-2-img.png" alt="" />
+                      <img src="<?php echo get_template_directory_uri() ?>/img/step1-2-img.png" alt="" />
                     </div>
                     <p class="step-box__text">
                       スマホを枕元に置いて<br />寝ます
@@ -289,7 +218,7 @@
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="./img/step1-3-img.png" alt="" />
+                      <img src="<?php echo get_template_directory_uri() ?>/img/step1-3-img.png" alt="" />
                     </div>
                     <p class="step-box__text">
                       起こすことによって<br />起きることができます
@@ -302,7 +231,7 @@
           <div class="how-to-use__box is-type2">
             <div class="how-to-use__box-title">
               誰かに起こされれば<br class="hidden-pc" />起きれる派の人
-              <img src="./img/step2-title-img.png" alt="" />
+              <img src="<?php echo get_template_directory_uri() ?>/img/step2-title-img.png" alt="" />
             </div>
             <div class="how-to-use__steps">
               <div class="how-to-use__step">
@@ -313,7 +242,7 @@
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="./img/step2-1-img.png" alt="" />
+                      <img src="<?php echo get_template_directory_uri() ?>/img/step2-1-img.png" alt="" />
                     </div>
                     <p class="step-box__text">
                       起こされたい時間を<br />設定します
@@ -329,7 +258,7 @@
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="./img/step2-2-img.png" alt="" />
+                      <img src="<?php echo get_template_directory_uri() ?>/img/step2-2-img.png" alt="" />
                     </div>
                     <p class="step-box__text">
                       スマホを枕元に置いて<br />寝ます
@@ -345,7 +274,7 @@
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="./img/step2-3-img.png" alt="" />
+                      <img src="<?php echo get_template_directory_uri() ?>/img/step2-3-img.png" alt="" />
                     </div>
                     <p class="step-box__text">
                       起こされることによって<br />起きることができます
@@ -372,7 +301,7 @@
             <div class="merit-box">
               <div class="merit-box__content">
                 <div class="merit-box__image">
-                  <img src="./img/merit1-img.png" alt="" />
+                  <img src="<?php echo get_template_directory_uri() ?>/img/merit1-img.png" alt="" />
                 </div>
                 <div class="merit-box__body">
                   <h3 class="merit-box__head">
@@ -392,7 +321,7 @@
             <div class="merit-box is-reverse">
               <div class="merit-box__content">
                 <div class="merit-box__image">
-                  <img src="./img/merit2-img.png" alt="" />
+                  <img src="<?php echo get_template_directory_uri() ?>/img/merit2-img.png" alt="" />
                 </div>
                 <div class="merit-box__body">
                   <h3 class="merit-box__head">
@@ -415,7 +344,7 @@
             <div class="merit-box">
               <div class="merit-box__content">
                 <div class="merit-box__image">
-                  <img src="./img/merit3-img.png" alt="" />
+                  <img src="<?php echo get_template_directory_uri() ?>/img/merit3-img.png" alt="" />
                 </div>
                 <div class="merit-box__body">
                   <h3 class="merit-box__head">
@@ -462,7 +391,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th><img src="./img/compare-logo.png" alt="OHA!" /></th>
+                <th><img src="<?php echo get_template_directory_uri() ?>/img/compare-logo.png" alt="OHA!" /></th>
                 <th>他社1</th>
                 <th>他社2</th>
               </tr>
@@ -569,7 +498,7 @@
               <div class="swiper-slide gallery__slide">
                 <div class="gallery-card">
                   <div class="gallery-card__image">
-                    <img src="./img/gallery-1.png" alt="" />
+                    <img src="<?php echo get_template_directory_uri() ?>/img/gallery-1.png" alt="" />
                   </div>
                   <p class="gallery-card__text">
                     最高な海。を拝んでいる私最高...
@@ -579,7 +508,7 @@
               <div class="swiper-slide gallery__slide">
                 <div class="gallery-card">
                   <div class="gallery-card__image">
-                    <img src="./img/gallery-2.png" alt="" />
+                    <img src="<?php echo get_template_directory_uri() ?>/img/gallery-2.png" alt="" />
                   </div>
                   <p class="gallery-card__text">
                     モーニングは一番のり。今日も私えらい。
@@ -589,7 +518,7 @@
               <div class="swiper-slide gallery__slide">
                 <div class="gallery-card">
                   <div class="gallery-card__image">
-                    <img src="./img/gallery-3.png" alt="" />
+                    <img src="<?php echo get_template_directory_uri() ?>/img/gallery-3.png" alt="" />
                   </div>
                   <p class="gallery-card__text">
                     風車のある公園ヨガ。みんな私に釘付け。
@@ -765,21 +694,4 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="footer__inner inner">
-        <small class="footer__copyright"
-          >COPYRIGHT 2023 株式会社デイトラ
-        </small>
-      </div>
-    </footer>
-
-    <a href="#" class="pagetop" id="js-pagetop"
-      ><img src="./img/pagetop-img.png" alt=""
-    /></a>
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
-    <script src="./js/lib/swiper-bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="./js/script.js"></script>
-  </body>
-</html>
+    <?php get_footer(); ?>
