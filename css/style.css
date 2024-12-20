@@ -135,6 +135,14 @@ body {
 .header__nav {
   display: none;
 }
+.header__nav .header__link a {
+  font-weight: 700;
+  letter-spacing: 0.48px;
+}
+.header__nav .button a {
+  font-weight: 700;
+  letter-spacing: 0.48px;
+}
 @media screen and (min-width: 768px) {
   .header__nav {
     display: -webkit-box;
@@ -232,6 +240,8 @@ body {
   padding-top: 14px;
   padding-bottom: 14px;
   text-align: right;
+}
+.drawer-content__link a {
   font-weight: 700;
   letter-spacing: 0.48px;
 }
@@ -239,6 +249,10 @@ body {
 .drawer-content__button {
   margin-top: 14px;
   text-align: right;
+}
+.drawer-content__button a {
+  font-weight: 700;
+  letter-spacing: 0.48px;
 }
 
 .mv {

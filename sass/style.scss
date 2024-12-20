@@ -163,6 +163,20 @@ body {
 .header__nav {
   display: none;
 
+  .header__link {
+    a {
+      font-weight: 700;
+      letter-spacing: 0.48px;
+    }
+  }
+
+  .button {
+    a {
+      font-weight: 700;
+      letter-spacing: 0.48px;
+    }
+  }
+
   @include mq(pc) {
     display: flex;
     align-items: center;
@@ -266,17 +280,25 @@ body {
 }
 
 .drawer-content__link {
+  a {
+    font-weight: 700;
+    letter-spacing: 0.48px;
+  }
+
   display: block;
   padding-top: 14px;
   padding-bottom: 14px;
   text-align: right;
-  font-weight: 700;
-  letter-spacing: 0.48px;
 }
 
 .drawer-content__button {
   margin-top: 14px;
   text-align: right;
+
+  a {
+    font-weight: 700;
+    letter-spacing: 0.48px;
+  }
 }
 
 .mv {
