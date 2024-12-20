@@ -293,11 +293,22 @@ body {
 
 .drawer-content__button {
   margin-top: 14px;
-  text-align: right;
+  text-align: right; /* ボタンを右寄せ */
 
   a {
     font-weight: 700;
     letter-spacing: 0.48px;
+    padding: 8px 28px;
+    display: inline-block;
+    border-radius: 60px;
+    border: 2px solid currentColor;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #111;
+    min-width: 150px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
   }
 }
 

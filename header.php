@@ -80,9 +80,9 @@
       <!-- <nav class="drawer-content__menu">
         <a href="#about" class="drawer-content__link">サービスについて</a>
         <a href="#how-to-use" class="drawer-content__link">使い方</a>
-        <a href="#merit" class="drawer-content__link">メリット</a> -->
+        <a href="#merit" class="drawer-content__link">メリット</a>
         <div class="drawer-content__button">
           <a href="#contact" class="button">お問い合わせ</a>
         </div>
-      </nav>
+      </nav> -->
     </div>
