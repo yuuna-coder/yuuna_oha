@@ -33,6 +33,10 @@ body {
   color: $color-base;
   font-family: $font-family-ja;
   background: $background-base;
+
+  &.is-fixed {
+    overflow: hidden;
+  }
 }
 
 .hidden-sp {

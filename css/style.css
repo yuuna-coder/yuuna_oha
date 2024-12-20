@@ -6,6 +6,9 @@ body {
   font-family: "Noto Sans JP", sans-serif;
   background: #fafafa;
 }
+body.is-fixed {
+  overflow: hidden;
+}
 
 @media screen and (max-width: 767px) {
   .hidden-sp {
