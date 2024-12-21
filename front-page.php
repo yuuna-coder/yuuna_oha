@@ -26,14 +26,28 @@
       <div class="case__inner">
         <h2 class="case__title js-in-view fade-in-up">導入実績</h2>
         <div class="case__items">
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case1-img.png" alt="" /></div>
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case2-img.png" alt="" /></div>
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case3-img.png" alt="" /></div>
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case4-img.png" alt="" /></div>
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case5-img.png" alt="" /></div>
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case6-img.png" alt="" /></div>
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case7-img.png" alt="" /></div>
-          <div class="case__item"><img src="<?php echo get_template_directory_uri() ?>/img/case8-img.png" alt="" /></div>
+
+          <?php
+            $args = array(
+              'post_type' => 'cases', // Custom Post Typeのスラッグ
+              'posts_per_page' => 8,  // 表示件数
+              'orderby' => 'rand',   // ランダム表示
+            );
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) :
+              while ($query->have_posts()) : $query->the_post(); ?>
+                  <div class="case__item">
+                    <?php if (has_post_thumbnail()) : ?>
+                      <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" />
+                    <?php endif; ?>
+                  </div>
+              <?php endwhile;
+                wp_reset_postdata();
+              else : ?>
+                <p>導入実績がありません。</p>
+          <?php endif; ?>
+          
         </div>
       </div>
     </section>
