@@ -37,17 +37,17 @@
 
             if ($query->have_posts()) :
               while ($query->have_posts()) : $query->the_post(); ?>
-                  <div class="case__item">
+                  <a href="<?php the_permalink(); ?>" class="case__item">
                     <?php if (has_post_thumbnail()) : ?>
                       <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" />
                     <?php endif; ?>
-                  </div>
+                  </a>
               <?php endwhile;
                 wp_reset_postdata();
               else : ?>
                 <p>導入実績がありません。</p>
           <?php endif; ?>
-          
+
         </div>
       </div>
     </section>
@@ -57,7 +57,50 @@
         <div class="news__card">
           <h2 class="news__title js-in-view fade-in-up">NEWS</h2>
           <div class="news__lists">
-            <a href="" class="news__list news-link">
+
+          <?php
+          // WP_Queryで最新のお知らせ3件を取得
+          $args = array(
+            'post_type'      => 'news',  // カスタム投稿タイプ 'news'
+            'posts_per_page' => 3,       // 最新3件を表示
+            'orderby'        => 'date',  // 日付順で並べる
+            'order'          => 'DESC',  // 新しい順
+          );
+          $news_query = new WP_Query($args);
+
+          // 投稿がある場合
+          if ($news_query->have_posts()) :
+            while ($news_query->have_posts()) : $news_query->the_post();
+          ?>
+              <a href="<?php the_permalink(); ?>" class="news__list news-link">
+                <div class="news-link__meta">
+                  <time class="news-link__date" datetime="<?php echo get_the_date('Y-m-d'); ?>">
+                    <?php echo get_the_date('Y年m月d日'); ?>
+                  </time>
+                  <div class="news-link__label is-news">
+                  <?php
+                  // カスタムタクソノミー「news_category」からカテゴリを取得
+                  $terms = get_the_terms(get_the_ID(), 'news_category'); // 'news_category' はカスタムタクソノミーのスラッグ
+
+                  if ($terms && !is_wp_error($terms)) {
+                    // 最初のタームを表示
+                    $term = array_shift($terms);
+                    echo esc_html($term->name);
+                  }
+                  ?>
+                  </div>
+                </div>
+                <h3 class="news-link__title"><?php the_title(); ?></h3>
+              </a>
+          <?php
+            endwhile;
+            wp_reset_postdata(); // クエリをリセット
+          else :
+          ?>
+            <p>お知らせはありません。</p>
+        <?php endif; ?>
+
+            <!-- <a href="" class="news__list news-link">
               <div class="news-link__meta">
                 <time class="news-link__date" datetime="2022-12-15"
                   >2022年12月15日</time
@@ -87,9 +130,10 @@
               <h3 class="news-link__title">
                 幕張メッセにて体験会を実施します！
               </h3>
-            </a>
+            </a> -->
+
           </div>
-          <div class="news__link"><a href="">もっとみる</a></div>
+          <div class="news__link"><a href="<?php echo get_post_type_archive_link('news'); ?>">もっとみる</a></div>
         </div>
       </div>
     </section>
