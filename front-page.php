@@ -61,76 +61,40 @@
           <?php
           // WP_Queryで最新のお知らせ3件を取得
           $args = array(
-            'post_type'      => 'news',  // カスタム投稿タイプ 'news'
-            'posts_per_page' => 3,       // 最新3件を表示
-            'orderby'        => 'date',  // 日付順で並べる
-            'order'          => 'DESC',  // 新しい順
+              'post_type'      => 'news',
+              'posts_per_page' => 3,
+              'orderby'        => 'date',
+              'order'          => 'DESC',
           );
           $news_query = new WP_Query($args);
-
-          // 投稿がある場合
-          if ($news_query->have_posts()) :
-            while ($news_query->have_posts()) : $news_query->the_post();
           ?>
-              <a href="<?php the_permalink(); ?>" class="news__list news-link">
-                <div class="news-link__meta">
-                  <time class="news-link__date" datetime="<?php echo get_the_date('Y-m-d'); ?>">
-                    <?php echo get_the_date('Y年m月d日'); ?>
-                  </time>
-                  <div class="news-link__label is-news">
-                  <?php
-                  // カスタムタクソノミー「news_category」からカテゴリを取得
-                  $terms = get_the_terms(get_the_ID(), 'news_category'); // 'news_category' はカスタムタクソノミーのスラッグ
 
-                  if ($terms && !is_wp_error($terms)) {
-                    // 最初のタームを表示
-                    $term = array_shift($terms);
-                    echo esc_html($term->name);
-                  }
-                  ?>
-                  </div>
-                </div>
-                <h3 class="news-link__title"><?php the_title(); ?></h3>
-              </a>
-          <?php
-            endwhile;
-            wp_reset_postdata(); // クエリをリセット
-          else :
-          ?>
-            <p>お知らせはありません。</p>
-        <?php endif; ?>
-
-            <!-- <a href="" class="news__list news-link">
-              <div class="news-link__meta">
-                <time class="news-link__date" datetime="2022-12-15"
-                  >2022年12月15日</time
-                >
-                <div class="news-link__label is-news">お知らせ</div>
-              </div>
-              <h3 class="news-link__title">年末年始について</h3>
-            </a>
-            <a href="" class="news__list news-link">
-              <div class="news-link__meta">
-                <time class="news-link__date" datetime="2022-12-10"
-                  >2022年12月10日</time
-                >
-                <div class="news-link__label is-column">コラム</div>
-              </div>
-              <h3 class="news-link__title">
-                あの芸能人にも使っていただいていることが判明しました！もう嬉しすぎて頭が真っ白になってしまいましたが、続きは本文にて！
-              </h3>
-            </a>
-            <a href="" class="news__list news-link">
-              <div class="news-link__meta">
-                <time class="news-link__date" datetime="2022-09-01"
-                  >2022年9月1日</time
-                >
-                <div class="news-link__label is-event">イベント情報</div>
-              </div>
-              <h3 class="news-link__title">
-                幕張メッセにて体験会を実施します！
-              </h3>
-            </a> -->
+          <?php if ($news_query->have_posts()) : ?>
+              <?php while ($news_query->have_posts()) : $news_query->the_post(); ?>
+                  <a href="<?php the_permalink(); ?>" class="news__list news-link">
+                      <div class="news-link__meta">
+                          <time class="news-link__date" datetime="<?php the_time('c'); ?>">
+                              <?php echo get_the_date('Y年m月d日'); ?>
+                          </time>
+                          <?php
+                          $terms = get_the_terms(get_the_ID(), 'news_category');
+                          if ($terms && !is_wp_error($terms)) :
+                              $term = array_shift($terms);
+                              $term_slug = esc_attr($term->slug);
+                              $term_name = esc_html($term->name);
+                          ?>
+                              <div class="news-link__label is-<?php echo $term_slug; ?>">
+                                  <?php echo $term_name; ?>
+                              </div>
+                          <?php endif; ?>
+                      </div>
+                      <h3 class="news-link__title"><?php the_title(); ?></h3>
+                  </a>
+              <?php endwhile; ?>
+              <?php wp_reset_postdata(); ?>
+          <?php else : ?>
+              <p>お知らせはありません。</p>
+          <?php endif; ?>
 
           </div>
           <div class="news__link"><a href="<?php echo get_post_type_archive_link('news'); ?>">もっとみる</a></div>
@@ -225,30 +189,44 @@
       <div class="how-to-use__inner inner">
         <div class="how-to-use__title">
           <div class="heading js-in-view fade-in-up">
-            <div class="heading__en">HOW TO USE</div>
-            <h2 class="heading__ja">OHA!の使い方</h2>
+            <?php if (get_field('section_title_en')) : ?>
+            <div class="heading__en"><?php the_field('section_title_en'); ?></div>
+            <?php endif; ?>
+            <?php if (get_field('section_title_en')) : ?>
+            <h2 class="heading__ja"><?php the_field('section_title_ja'); ?></h2>
+            <?php endif; ?>
           </div>
         </div>
         <div class="how-to-use__boxes">
           <div class="how-to-use__box">
             <div class="how-to-use__box-title">
-              誰かを起こす予定があれば<br class="hidden-pc" />起きれる派の人
-              <img src="<?php echo get_template_directory_uri() ?>/img/step1-title-img.png" alt="" />
+              <?php if (get_field('box1_title')) : ?>
+                <?php echo wp_kses_post(get_field('box1_title')); ?>
+              <?php endif; ?>
+              <?php if (get_field('box1_image')) : ?>
+              <img src="<?php the_field('box1_image'); ?>" alt="" />
+              <?php endif; ?>
             </div>
             <div class="how-to-use__steps">
               <div class="how-to-use__step js-in-view anim-fade-in-up">
                 <div class="step-box">
                   <div class="step-box__head">
                     <div class="step-box__head-text">STEP</div>
-                    <div class="step-box__head-number">01</div>
+                    <?php if (get_field('box1_step1_number')) : ?>
+                    <div class="step-box__head-number"><?php the_field('box1_step1_number'); ?></div>
+                    <?php endif; ?>
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="<?php echo get_template_directory_uri() ?>/img/step1-1-img.png" alt="" />
+                    <?php if (get_field('box1_step1_image')) : ?>
+                      <img src="<?php the_field('box1_step1_image'); ?>" alt="" />
+                    <?php endif; ?>
                     </div>
+                    <?php if (get_field('box1_step1_text')) : ?>
                     <p class="step-box__text">
-                      起こしたい時間を<br />設定します
+                      <?php echo nl2br(esc_html(get_field('box1_step1_text'))); ?>
                     </p>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -256,15 +234,21 @@
                 <div class="step-box">
                   <div class="step-box__head">
                     <div class="step-box__head-text">STEP</div>
-                    <div class="step-box__head-number">02</div>
+                    <?php if (get_field('box1_step2_number')) : ?>
+                    <div class="step-box__head-number"><?php the_field('box1_step2_number'); ?></div>
+                    <?php endif; ?>
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="<?php echo get_template_directory_uri() ?>/img/step1-2-img.png" alt="" />
-                    </div>
+                    <?php if (get_field('box1_step2_image')) : ?>
+                      <img src="<?php the_field('box1_step2_image'); ?>" alt="" />
+                    <?php endif; ?>
+                  </div>
+                  <?php if (get_field('box1_step2_text')) : ?>
                     <p class="step-box__text">
-                      スマホを枕元に置いて<br />寝ます
+                      <?php echo nl2br(esc_html(get_field('box1_step2_text'))); ?>
                     </p>
+                  <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -272,39 +256,55 @@
                 <div class="step-box">
                   <div class="step-box__head">
                     <div class="step-box__head-text">STEP</div>
-                    <div class="step-box__head-number">03</div>
+                    <?php if (get_field('box1_step3_number')) : ?>
+                    <div class="step-box__head-number"><?php the_field('box1_step3_number'); ?></div>
+                    <?php endif; ?>
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="<?php echo get_template_directory_uri() ?>/img/step1-3-img.png" alt="" />
-                    </div>
+                    <?php if (get_field('box1_step3_image')) : ?>
+                      <img src="<?php the_field('box1_step3_image'); ?>" alt="" />
+                    <?php endif; ?>
+                  </div>
+                  <?php if (get_field('box1_step3_text')) : ?>
                     <p class="step-box__text">
-                      起こすことによって<br />起きることができます
+                      <?php echo nl2br(esc_html(get_field('box1_step3_text'))); ?>
                     </p>
+                  <?php endif; ?>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="how-to-use__box is-type2">
-            <div class="how-to-use__box-title">
-              誰かに起こされれば<br class="hidden-pc" />起きれる派の人
-              <img src="<?php echo get_template_directory_uri() ?>/img/step2-title-img.png" alt="" />
-            </div>
+          <?php if (get_field('box2_title')) : ?>
+          <div class="how-to-use__box-title">
+          <?php echo wp_kses_post(get_field('box2_title')); ?>
+          <?php endif; ?>
+          <?php if (get_field('box2_image')) : ?>
+            <img src="<?php the_field('box2_image'); ?>" alt="" />
+          <?php endif; ?>
+          </div>
             <div class="how-to-use__steps">
               <div class="how-to-use__step">
                 <div class="step-box">
                   <div class="step-box__head">
                     <div class="step-box__head-text">STEP</div>
-                    <div class="step-box__head-number">01</div>
+                    <?php if (get_field('box2_step1_number')) : ?>
+                    <div class="step-box__head-number"><?php the_field('box2_step1_number'); ?></div>
+                    <?php endif; ?>
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="<?php echo get_template_directory_uri() ?>/img/step2-1-img.png" alt="" />
+                      <?php if (get_field('box2_step1_image')) : ?>
+                        <img src="<?php the_field('box2_step1_image'); ?>" alt="" />
+                      <?php endif; ?>
                     </div>
-                    <p class="step-box__text">
-                      起こされたい時間を<br />設定します
-                    </p>
+                    <?php if (get_field('box2_step1_text')) : ?>
+                      <p class="step-box__text">
+                        <?php echo nl2br(esc_html(get_field('box2_step1_text'))); ?>
+                      </p>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -312,15 +312,21 @@
                 <div class="step-box">
                   <div class="step-box__head">
                     <div class="step-box__head-text">STEP</div>
-                    <div class="step-box__head-number">02</div>
+                    <?php if (get_field('box2_step2_number')) : ?>
+                    <div class="step-box__head-number"><?php the_field('box2_step2_number'); ?></div>
+                    <?php endif; ?>
                   </div>
                   <div class="step-box__body">
+                  <?php if (get_field('box2_step2_image')) : ?>
                     <div class="step-box__image">
-                      <img src="<?php echo get_template_directory_uri() ?>/img/step2-2-img.png" alt="" />
+                    <img src="<?php the_field('box2_step2_image'); ?>" alt="" />
+                      <?php endif; ?>
                     </div>
-                    <p class="step-box__text">
-                      スマホを枕元に置いて<br />寝ます
-                    </p>
+                    <?php if (get_field('box2_step2_text')) : ?>
+                      <p class="step-box__text">
+                        <?php echo nl2br(esc_html(get_field('box2_step2_text'))); ?>
+                      </p>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -328,15 +334,21 @@
                 <div class="step-box">
                   <div class="step-box__head">
                     <div class="step-box__head-text">STEP</div>
-                    <div class="step-box__head-number">03</div>
+                    <?php if (get_field('box2_step3_number')) : ?>
+                    <div class="step-box__head-number"><?php the_field('box2_step3_number'); ?></div>
+                    <?php endif; ?>
                   </div>
                   <div class="step-box__body">
                     <div class="step-box__image">
-                      <img src="<?php echo get_template_directory_uri() ?>/img/step2-3-img.png" alt="" />
+                    <?php if (get_field('box2_step3_image')) : ?>
+                      <img src="<?php the_field('box2_step3_image'); ?>" alt="" />
+                      <?php endif; ?>
                     </div>
-                    <p class="step-box__text">
-                      起こされることによって<br />起きることができます
-                    </p>
+                    <?php if (get_field('box2_step3_text')) : ?>
+                      <p class="step-box__text">
+                        <?php echo nl2br(esc_html(get_field('box2_step3_text'))); ?>
+                      </p>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>

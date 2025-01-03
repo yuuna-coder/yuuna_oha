@@ -612,6 +612,7 @@ body.is-fixed {
   background: #e4780c;
   min-width: 63px;
   text-align: center;
+  /* 新しいカテゴリのスタイルも追加可能 */
 }
 .news-link__label.is-news {
   background: #e4780c;
@@ -621,6 +622,9 @@ body.is-fixed {
 }
 .news-link__label.is-event {
   background: #389b47;
+}
+.news-link__label.is-custom {
+  background: #0073e6; /* カスタム: 青 */
 }
 
 .about {

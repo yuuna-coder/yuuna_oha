@@ -676,6 +676,11 @@ body {
   &.is-event {
     background: #389b47;
   }
+
+  /* 新しいカテゴリのスタイルも追加可能 */
+  &.is-custom {
+    background: #0073e6; /* カスタム: 青 */
+  }
 }
 
 .news-link__title {
