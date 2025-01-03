@@ -362,8 +362,12 @@
       <div class="merit__inner inner">
         <div class="merit__title">
           <div class="heading js-in-view fade-in-up">
-            <div class="heading__en">MERIT</div>
-            <div class="heading__ja">OHA!を使うメリット</div>
+            <?php if (get_field('merit_title')) : ?>
+            <div class="heading__en"><?php the_field('merit_title'); ?></div>
+            <?php endif; ?>
+            <?php if (get_field('merit_subtitle')) : ?>
+            <div class="heading__ja"><?php the_field('merit_subtitle'); ?></div>
+            <?php endif; ?>
           </div>
         </div>
         <div class="merit__boxes">
@@ -371,18 +375,28 @@
             <div class="merit-box">
               <div class="merit-box__content">
                 <div class="merit-box__image">
-                  <img src="<?php echo get_template_directory_uri() ?>/img/merit1-img.png" alt="" />
+                <?php if ($merit1 = get_field('merit1')) : ?>
+                  <?php if ($image = $merit1['merit1_image']) : ?>
+                    <img src="<?php echo esc_url($image); ?>" alt="" />
+                  <?php endif; ?>
                 </div>
                 <div class="merit-box__body">
                   <h3 class="merit-box__head">
-                    <span class="merit-box__number">1</span>
+                  <?php if ($number = $merit1['merit1_number']) : ?>
+                    <span class="merit-box__number"><?php echo esc_html($number); ?></span>
+                  <?php endif; ?>
+                  <?php if ($title = $merit1['merit1_title']) : ?>
                     <span class="merit-box__title">
-                      通りすがりに猫が<br />挨拶してくれるようになる
+                      <?php echo nl2br(esc_html($title)); ?>
                     </span>
+                  <?php endif; ?>
                   </h3>
+                  <?php if ($description = $merit1['merit1_description']) : ?>
                   <p class="merit-box__text">
-                    偶然の可能性も高いですが、OHA!を使うようになってから、やたらと猫が挨拶してくれるようになった、というお話をいただきます。とはいえ、自惚れすぎてはいけません。挨拶されたからといって一方的に話しかけ続けてしまうと気まぐれ猫ちゃんにうんざりされる上に周りの目も冷ややかです。
+                    <?php echo esc_html($description); ?>
                   </p>
+                  <?php endif; ?>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
@@ -391,21 +405,28 @@
             <div class="merit-box is-reverse">
               <div class="merit-box__content">
                 <div class="merit-box__image">
-                  <img src="<?php echo get_template_directory_uri() ?>/img/merit2-img.png" alt="" />
+                <?php if ($merit2 = get_field('merit2')) : ?>
+                  <?php if ($image = $merit2['merit2_image']) : ?>
+                    <img src="<?php echo esc_url($image); ?>" alt="" />
+                    <?php endif; ?>
                 </div>
                 <div class="merit-box__body">
                   <h3 class="merit-box__head">
-                    <span class="merit-box__number">2</span>
+                  <?php if ($number = $merit2['merit2_number']) : ?>
+                    <span class="merit-box__number"><?php echo esc_html($number); ?></span>
+                  <?php endif; ?>
+                  <?php if ($title = $merit2['merit2_title']) : ?>
                     <span class="merit-box__title">
-                      商店街の福引で<br />3等のティッシュボックスが<br
-                        class="hidden-pc"
-                      />当たる
+                      <?php echo nl2br(esc_html($title)); ?>
                     </span>
+                  <?php endif; ?>
                   </h3>
+                  <?php if ($description = $merit2['merit2_description']) : ?>
                   <p class="merit-box__text">
-                    OHA!を使うことで、どういった因果関係なのか、ちょっと運もよくなります。あなたの街には商店街があるかわかりませんが、もしあればチャンスです。買い物をして、福引に挑んでみましょう。3等のティッシュボックスが当たること間違いなしです。<br />
-                    もう景品のポケットティッシュで涙を拭う、なんてことはないのです。
+                  <?php echo nl2br(esc_html($description)); ?>
                   </p>
+                  <?php endif; ?>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
@@ -414,21 +435,28 @@
             <div class="merit-box">
               <div class="merit-box__content">
                 <div class="merit-box__image">
-                  <img src="<?php echo get_template_directory_uri() ?>/img/merit3-img.png" alt="" />
+                <?php if ($merit3 = get_field('merit3')) : ?>
+                  <?php if ($image = $merit3['merit3_image']) : ?>
+                    <img src="<?php echo esc_url($image); ?>" alt="" />
+                    <?php endif; ?>
                 </div>
                 <div class="merit-box__body">
                   <h3 class="merit-box__head">
-                    <span class="merit-box__number">3</span>
+                  <?php if ($number = $merit3['merit3_number']) : ?>
+                    <span class="merit-box__number"><?php echo esc_html($number); ?></span>
+                  <?php endif; ?>
+                  <?php if ($title = $merit3['merit3_title']) : ?>
                     <span class="merit-box__title">
-                      掃除をしていたら、<br />過去に自分が隠した<br
-                        class="hidden-pc"
-                      />へそくりが出てきた
+                      <?php echo nl2br(esc_html($title)); ?>
                     </span>
+                  <?php endif; ?>
                   </h3>
+                  <?php if ($description = $merit3['merit3_description']) : ?>
                   <p class="merit-box__text">
-                    自分が隠したへそくりを自分が発見するのはプラスマイナス0ですが、なんだか嬉しいものですよね。過去の自分よ、素敵なサプライズをありがとう。<br />
-                    へそくりをしたことがない方にとっては申し訳ないですがこのイベントは起こりませんのでアプリ使用の再検討をおすすめします。
+                    <?php echo esc_html($description); ?>
                   </p>
+                  <?php endif; ?>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
