@@ -489,29 +489,59 @@
             <thead>
               <tr>
                 <th></th>
-                <th><img src="<?php echo get_template_directory_uri() ?>/img/compare-logo.png" alt="OHA!" /></th>
-                <th>他社1</th>
-                <th>他社2</th>
+                <?php if (get_field('oha_logo')) : ?>
+                <th><img src="<?php the_field('oha_logo'); ?>" alt="OHA!" /></th>
+                <?php endif; ?>
+                <?php if (get_field('company1_name')) : ?>
+                <th><?php the_field('company1_name'); ?></th>
+                <?php endif; ?>
+                <?php if (get_field('company2_name')) : ?>
+                <th><?php the_field('company2_name'); ?></th>
+                <?php endif; ?>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th>仲介手数料</th>
-                <td>なし！</td>
-                <td>希望時間に起きれた毎に<br />100円</td>
-                <td>希望時間に起きれた毎に<br />40000ペコ</td>
+                <?php if ($commission = get_field('commission')) : ?>
+                  <?php if ($oha_commission = $commission['oha_commission']) : ?>
+                  <td><?php echo esc_html($oha_commission); ?></td>
+                  <?php endif; ?>
+                  <?php if ($company1_commission = $commission['company1_commission']) : ?>
+                  <td><?php echo nl2br(esc_html($company1_commission)); ?></td>
+                  <?php endif; ?>
+                  <?php if ($company2_commission = $commission['company2_commission']) : ?>
+                  <td><?php echo nl2br(esc_html($company2_commission)); ?></td>
+                  <?php endif; ?>
+                <?php endif; ?>
               </tr>
               <tr>
                 <th>登録料</th>
-                <td>なし！</td>
-                <td>希望時間に起きれた毎に<br />100円</td>
-                <td>希望時間に起きれた毎に<br />40000ペコ</td>
+                <?php if ($registration = get_field('registration')) : ?>
+                  <?php if ($oha_registration = $registration['oha_registration']) : ?>
+                  <td><?php echo esc_html($oha_registration); ?></td>
+                  <?php endif; ?>
+                  <?php if ($company1_registration = $registration['company1_registration']) : ?>
+                  <td><?php echo nl2br(esc_html($company1_registration)); ?></td>
+                  <?php endif; ?>
+                  <?php if ($company2_registration = $registration['company2_registration']) : ?>
+                  <td><?php echo nl2br(esc_html($company2_registration)); ?></td>
+                  <?php endif; ?>
+                <?php endif; ?>
               </tr>
               <tr>
                 <th>年間皆勤賞特典</th>
-                <td>あり！</td>
-                <td>なし</td>
-                <td>なし</td>
+                <?php if ($bonus = get_field('annual_bonus')) : ?>
+                  <?php if ($oha_bonus = $bonus['oha_bonus']) : ?>
+                  <td><?php echo esc_html($oha_bonus); ?></td>
+                  <?php endif; ?>
+                  <?php if ($company1_bonus = $bonus['company1_bonus']) : ?>
+                  <td><?php echo nl2br(esc_html($company1_bonus)); ?></td>
+                  <?php endif; ?>
+                  <?php if ($company2_bonus = $bonus['company2_bonus']) : ?>
+                  <td><?php echo nl2br(esc_html($company2_bonus)); ?></td>
+                  <?php endif; ?>
+                <?php endif; ?>
               </tr>
             </tbody>
           </table>
@@ -530,50 +560,70 @@
         </div>
         <div class="qa__boxes">
           <div class="qa__box qa-box is-open">
+          <?php if ($qa1 = get_field('qa1')) : ?>
             <button type="button" class="qa-box__head js-accordion">
               <span class="qa-box__head-icon">Q</span>
-              <span class="qa-box__head-text"
-                >僕があまりにも起きない場合、相手に怒られることはあるのでしょうか？怖くて朝も起きられません。</span
-              >
+              <?php if ($question = $qa1['question']) : ?>
+              <span class="qa-box__head-text">
+                <?php echo esc_html($question); ?>
+              </span>
+              <?php endif; ?>
             </button>
             <div class="qa-box__body" style="display: block">
               <div class="qa-box__a">
                 <span class="qa-box__a-icon">A</span>
-                <span class="qa-box__a-text">残念ながら、相手によります。</span>
+                <?php if ($answer = $qa1['answer']) : ?>
+                <span class="qa-box__a-text">
+                  <?php echo esc_html($answer); ?>
+                </span>
+                <?php endif; ?>
               </div>
             </div>
+          <?php endif; ?>
           </div>
           <div class="qa__box qa-box">
+          <?php if ($qa2 = get_field('qa2')) : ?>
             <button type="button" class="qa-box__head js-accordion">
               <span class="qa-box__head-icon">Q</span>
-              <span class="qa-box__head-text"
-                >今現在の登録者は何人ですか？</span
-              >
+              <?php if ($question = $qa2['question']) : ?>
+              <span class="qa-box__head-text">
+              <?php echo esc_html($question); ?>
+              </span>
+              <?php endif; ?>
             </button>
             <div class="qa-box__body">
               <div class="qa-box__a">
                 <span class="qa-box__a-icon">A</span>
-                <span class="qa-box__a-text"
-                  >現在の登録者は150万人(から149.998万人を引いた人数)です。この文を2行にしたいのでもう一度言います。現在の登録者は150万人(から149.998万人を引いた人数)です！</span
-                >
+                <?php if ($answer = $qa2['answer']) : ?>
+                <span class="qa-box__a-text">
+                  <?php echo esc_html($answer); ?>
+                </span>
+                <?php endif; ?>
               </div>
             </div>
+          <?php endif; ?>
           </div>
           <div class="qa__box qa-box">
+          <?php if ($qa3 = get_field('qa3')) : ?>
             <button type="button" class="qa-box__head js-accordion">
               <span class="qa-box__head-icon">Q</span>
-              <span class="qa-box__head-text"
-                >アプリをインストールして使う妄想だけで朝起きられるようになりました！結局インストールはしてないですが、ありがとうございます！</span
-              >
+              <?php if ($question = $qa3['question']) : ?>
+              <span class="qa-box__head-text">
+              <?php echo esc_html($question); ?>
+              </span>
+              <?php endif; ?>
             </button>
             <div class="qa-box__body">
               <div class="qa-box__a">
                 <span class="qa-box__a-icon">A</span>
-                <span class="qa-box__a-text"
-                  >それはよかったです！しかしインストールはしてほしかった！！！</span
-                >
+                <?php if ($answer = $qa3['answer']) : ?>
+                <span class="qa-box__a-text">
+                  <?php echo esc_html($answer); ?>
+                </span>
+                <?php endif; ?>
               </div>
             </div>
+          <?php endif; ?>
           </div>
         </div>
       </div>
@@ -592,37 +642,36 @@
           <div id="js-gallery-swiper" class="swiper gallery__swiper">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
+
               <!-- Slides -->
-              <div class="swiper-slide gallery__slide">
-                <div class="gallery-card">
-                  <div class="gallery-card__image">
-                    <img src="<?php echo get_template_directory_uri() ?>/img/gallery-1.png" alt="" />
+              <?php
+              $args = array(
+                'post_type' => 'gallery', // Custom Post Typeのスラッグ
+                'posts_per_page' => 3,  // 表示件数
+                'orderby' => 'date',    // 日付順
+                'order' => 'ASC',      // ASCで昇順、DESCで降順
+              );
+              $query = new WP_Query($args);
+
+              if ($query->have_posts()) :
+                while ($query->have_posts()) : $query->the_post(); ?>
+                <div class="swiper-slide gallery__slide">
+                  <div class="gallery-card">
+                    <div class="gallery-card__image">
+                      <?php if (has_post_thumbnail()) : ?>
+                      <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" />
+                    </div>
+                    <p class="gallery-card__text">
+                      <?php the_title(); ?>
+                    </p>
+                    <?php endif; ?>
                   </div>
-                  <p class="gallery-card__text">
-                    最高な海。を拝んでいる私最高...
-                  </p>
                 </div>
-              </div>
-              <div class="swiper-slide gallery__slide">
-                <div class="gallery-card">
-                  <div class="gallery-card__image">
-                    <img src="<?php echo get_template_directory_uri() ?>/img/gallery-2.png" alt="" />
-                  </div>
-                  <p class="gallery-card__text">
-                    モーニングは一番のり。今日も私えらい。
-                  </p>
-                </div>
-              </div>
-              <div class="swiper-slide gallery__slide">
-                <div class="gallery-card">
-                  <div class="gallery-card__image">
-                    <img src="<?php echo get_template_directory_uri() ?>/img/gallery-3.png" alt="" />
-                  </div>
-                  <p class="gallery-card__text">
-                    風車のある公園ヨガ。みんな私に釘付け。
-                  </p>
-                </div>
-              </div>
+              <?php endwhile;
+                wp_reset_postdata();
+              else : ?>
+                <p>画像がありません。</p>
+              <?php endif; ?>
             </div>
             <!-- If we need pagination -->
             <div
