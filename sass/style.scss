@@ -1697,6 +1697,11 @@ body {
   }
 }
 
+// Contact Form7がデフォルトで出力する｢spinner｣を無効化
+.wpcf7-spinner {
+  display: none;
+}
+
 .form-field {
   @include mq(pc) {
     display: flex;
@@ -1737,7 +1742,7 @@ body {
   }
 }
 
-.form-field__item {
+.wpcf7-form-control-wrap {
   margin-top: 15px;
   flex-grow: 1;
 
@@ -1807,43 +1812,60 @@ body {
   }
 }
 
-.from-radio {
+.wpcf7-list-item {
   line-height: calc(23 / 16);
+  margin: 0;
 
   &:hover {
-    .from-radio__text {
+    .wpcf7-list-item-label {
       &::before {
         border-color: #fabe00;
       }
     }
   }
-}
 
-.from-radio__input {
-  width: 1px;
-  height: 1px;
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
+  input {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
 
-  &:checked {
-    + .from-radio__text {
-      &::after {
-        opacity: 1;
+    &:checked {
+      + .wpcf7-list-item-label {
+        &::after {
+          opacity: 1;
+        }
       }
     }
   }
-
-  // &:focus {
-  //   + .from-radio__text {
-  //     &::before {
-  //       border-color: #fabe00;
-  //     }
-  //   }
-  // }
 }
 
-.from-radio__text {
+// .from-radio__input {
+//   width: 1px;
+//   height: 1px;
+//   position: absolute;
+//   clip: rect(0, 0, 0, 0);
+//   overflow: hidden;
+
+//   &:checked {
+//     + .wpcf7-list-item-label {
+//       &::after {
+//         opacity: 1;
+//       }
+//     }
+//   }
+
+// &:focus {
+//   + .from-radio__text {
+//     &::before {
+//       border-color: #fabe00;
+//     }
+//   }
+// }
+// }
+
+.wpcf7-list-item-label {
   font-weight: 700;
   padding-left: 28px;
   position: relative;
@@ -1987,53 +2009,55 @@ body {
   }
 }
 
-.form-checkbox__text {
-  position: relative;
-  padding-left: 30px;
-  font-size: 14px;
-  font-weight: 700;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &::before {
-    width: 20px;
-    height: 20px;
-    border-radius: 1px;
-    border: 1px solid #111;
-    transition: border-color 0.3s;
-
-    @include mq(pc) {
-      margin-top: 2px;
-    }
-  }
-
-  &::after {
-    width: 23px;
-    height: 17.53px;
-    left: -1px;
-    margin-top: -1.2px;
-    background: url(../img/check-icon.png) no-repeat center center / contain;
-    opacity: 0;
-
-    @include mq(pc) {
-      margin-top: 0.8px;
-    }
-  }
-
-  a {
-    text-decoration-line: underline;
+.contact__privacy {
+  .wpcf7-list-item-label {
+    position: relative;
+    padding-left: 30px;
+    font-size: 14px;
     font-weight: 700;
-    transition: color 0.3s;
 
-    &:hover {
-      color: #f5810e;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      width: 20px;
+      height: 20px;
+      border-radius: 1px;
+      border: 1px solid #111;
+      transition: border-color 0.3s;
+
+      @include mq(pc) {
+        margin-top: 2px;
+      }
+    }
+
+    &::after {
+      width: 23px;
+      height: 17.53px;
+      left: -1px;
+      margin-top: -1.2px;
+      background: url(../img/check-icon.png) no-repeat center center / contain;
+      opacity: 0;
+
+      @include mq(pc) {
+        margin-top: 0.8px;
+      }
+    }
+
+    a {
+      text-decoration-line: underline;
+      font-weight: 700;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #f5810e;
+      }
     }
   }
 }
